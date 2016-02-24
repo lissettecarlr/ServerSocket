@@ -1,7 +1,12 @@
 package com.serverSocket.main;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
 
@@ -18,16 +23,36 @@ public class ServerListener extends Thread {
 				Socket socket =  serverSocket.accept();//阻塞
 				JOptionPane.showMessageDialog(null, "有客服端连接到本地的23457端口");	
 
-				 // 从Socket当中得到InputStream对象
+				 // 获得输入流
 		        InputStream inputStream = socket.getInputStream();  
-		        byte buffer[] = new byte[1024 * 4];  
+		          	        
+		        //获得输出流
+		        OutputStream os=socket.getOutputStream();  
+	            PrintWriter pw=new PrintWriter(os);  
+	            
+	            //进入时输入显示welcome
+	            String reply="welcome";  
+	            pw.write(reply);  
+	            pw.flush(); 
+	            
+	            //读取用户信息
+	            byte buffer[] = new byte[1024 * 4];  
 		        int temp = 0;  
-		        // 从InputStream当中读取客户端所发送的数据  
+		        // 没接收到一段数据将其显示在控制台，并且返回OK
 		        while ((temp = inputStream.read(buffer)) != -1) {  
-		            System.out.println(new String(buffer, 0, temp));  
-		        }  
-		        serverSocket.close();  
-		        
+		            System.out.println(new String(buffer, 0, temp));
+		            pw.write("OK!");  
+		            pw.flush(); 
+		        }   
+	   
+	            //5.关闭资源  
+	            pw.close();  
+	            os.close();  
+//	            br.close();  
+	            inputStream.close();  
+	            socket.close();  
+	            serverSocket.close();  
+	               
 				
 			}
 		} catch (IOException e) {

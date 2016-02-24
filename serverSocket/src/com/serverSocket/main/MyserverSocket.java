@@ -1,7 +1,7 @@
 package com.serverSocket.main;
 
 //ctrl + shitf + o  清除不必要的包
-//通过使用客服端连接该服务器 控制台将显示客服端发来的数据
+//服务器程序,连接服务器后会接收到welcome，在没对他发送一组数据后，将返回OK，并且在控制台显示
 public class MyserverSocket {
 
 	public static void main(String[] args) {
