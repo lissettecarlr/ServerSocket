@@ -21,7 +21,7 @@ public class ServerListener extends Thread {
 			while(true){
 				//每当有一个客服端连接就有一个socket
 				Socket socket =  serverSocket.accept();//阻塞
-				JOptionPane.showMessageDialog(null, "有客服端连接到本地的23457端口");	
+//				JOptionPane.showMessageDialog(null, "有客服端连接到本地的23457端口");	
 
 				 // 获得输入流
 		        InputStream inputStream = socket.getInputStream();  
@@ -45,7 +45,7 @@ public class ServerListener extends Thread {
 		            pw.flush(); 
 		        }   
 	   
-	            //5.关闭资源  
+	            //5.
 	            pw.close();  
 	            os.close();  
 //	            br.close();  
