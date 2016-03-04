@@ -24,7 +24,7 @@ public class ServerListener extends Thread {
 //				JOptionPane.showMessageDialog(null, "有客服端连接到本地的23457端口");	
 				ChatSocket cs = new ChatSocket(socket);
 				cs.start();         
- 	               			
+ 	            ChatManager.getChatManager().add(cs);   			
 			}
 		} catch (IOException e) {
 			e.printStackTrace();
