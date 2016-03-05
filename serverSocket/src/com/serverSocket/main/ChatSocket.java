@@ -57,7 +57,6 @@ public class ChatSocket extends Thread {
 			
 		}  
           	        
-
 	}
 	
 }
