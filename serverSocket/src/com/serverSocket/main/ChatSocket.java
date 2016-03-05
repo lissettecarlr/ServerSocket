@@ -9,7 +9,7 @@ import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 import java.net.Socket;
 
-
+//该类用于对每个socke对象进行操作
 public class ChatSocket extends Thread {
 	Socket socket;
 	
@@ -17,6 +17,7 @@ public class ChatSocket extends Thread {
 		this.socket = s;
 	}
 
+	//输出
 	public void print(String out)
 	{
         //获得输出流
@@ -36,7 +37,7 @@ public class ChatSocket extends Thread {
 	
 	@Override
 	public void run() {
-        print("wellcome");
+        print("wellcome"+"\n");
         try {
         	
         	BufferedReader br = new BufferedReader(
@@ -45,27 +46,11 @@ public class ChatSocket extends Thread {
         	String line =null ; //用来保存接收数据
         	while((line = br.readLine())!=null) //读取一行，也就是说发送时候句末需要加换行符
         	{
-        		ChatManager.getChatManager().publish(this, line);//发给其他客服端
+        		ChatManager.getChatManager().publish(this, line+"\n");//发给其他客服端
+        		System.err.println(line);
         	}
         	br.close();
         	ChatManager.getChatManager().remove(this);
-//        	while(true){
-        	// 获得输入流
-//			InputStream inputStream = socket.getInputStream();
-            //读取用户信息
-//            byte buffer[] = new byte[1024 * 4];  
-//	        int temp = 0;  
-	        // 没接收到一段数据将其显示在控制台，并且返回OK
-//	        while ((temp = inputStream.read(buffer)) != -1) {  
-//	            System.out.println(new String(buffer, 0, temp));
-//	            pw.write("你发送了："+new String(buffer, 0, temp));  
-//	            pw.flush(); 
-	        	
-//	        }   	   
-
-//            inputStream.close();  
-//            socket.close();  
-//        	}
 			
 		} catch (IOException e) {
 			e.printStackTrace();

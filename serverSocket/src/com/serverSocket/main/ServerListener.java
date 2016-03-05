@@ -2,6 +2,7 @@ package com.serverSocket.main;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.Console;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -9,6 +10,7 @@ import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
+
 import javax.swing.JOptionPane;
 
 
@@ -21,10 +23,11 @@ public class ServerListener extends Thread {
 			while(true){
 				//每当有一个客服端连接就有一个socket
 				Socket socket =  serverSocket.accept();//阻塞
-//				JOptionPane.showMessageDialog(null, "有客服端连接到本地的23457端口");	
-				ChatSocket cs = new ChatSocket(socket);
+//				JOptionPane.showMessageDialog(null, "有客服端连接到本地的23457端口");
+				System.out.println("有客服端链接-------");
+				ChatSocket cs = new ChatSocket(socket);//新线程
 				cs.start();         
- 	            ChatManager.getChatManager().add(cs);   			
+ 	            ChatManager.getChatManager().add(cs);		
 			}
 		} catch (IOException e) {
 			e.printStackTrace();
